@@ -1,0 +1,37 @@
+    import { useState } from "react";
+    import { Card, CardContent } from "@/components/ui/card";
+    import { motion } from "framer-motion";
+
+    const tickets = [
+      { id: 1, category: "Dewasa" },
+      { id: 2, category: "Anak-anak" },
+    ];
+
+export default function TicketingPage() {
+  return (
+    <div className="container">
+      {/* Poster di sebelah kiri */}
+      <div className="poster-container">
+        <img src="/poster-sajawi.jpg" alt="Poster Acara SAJAWI PASUNDAN" className="poster" />
+      </div>
+
+      {/* Tiket di sebelah kanan */}
+      <div className="ticket-container">
+        <h1 className="title">Buy Ticket</h1>
+        <div className="ticket-list">
+          {tickets.map((ticket) => (
+            <motion.div key={ticket.id} whileHover={{ scale: 1.05 }}>
+              <Card className="ticket-card">
+                <CardContent>
+                  <h2 className="ticket-category">{ticket.category}</h2>
+                  <p className="ticket-price">Rp{ticket.price.toLocaleString()}</p>
+                  <Button className="buy-button">Beli Tiket</Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
